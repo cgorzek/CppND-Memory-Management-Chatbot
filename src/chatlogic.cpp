@@ -30,6 +30,7 @@ ChatLogic::~ChatLogic()
 
     // delete chatbot instance
     // delete _chatBot;
+    delete _panelDialog;
 
     ////
     //// EOF STUDENT CODE
@@ -201,6 +202,7 @@ void ChatLogic::LoadAnswerGraphFromFile(std::string filename)
 
     ChatBot* chatBot = new ChatBot("../images/chatbot.png");
     this->_chatBot = chatBot;
+    chatBot->SetChatLogicHandle(this);
     // add chatbot to graph root node
     chatBot->SetRootNode(rootNode);
     rootNode->MoveChatbotHere(std::move(*chatBot));

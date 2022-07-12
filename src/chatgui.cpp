@@ -135,7 +135,7 @@ ChatBotPanelDialog::~ChatBotPanelDialog()
 {
     //// STUDENT CODE
     ////
-    std::cout << "Chatg Destructor" << std::endl;
+    std::cout << "ChatBotPanelDialog Destructor" << std::endl;
 
     //delete _chatLogic;
 
