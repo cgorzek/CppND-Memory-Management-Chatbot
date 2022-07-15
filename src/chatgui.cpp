@@ -119,7 +119,10 @@ ChatBotPanelDialog::ChatBotPanelDialog(wxWindow *parent, wxWindowID id)
     ////
 
     // create chat logic instance
-    _chatLogic = std::unique_ptr<ChatLogic>(new ChatLogic); 
+    //_chatLogic = std::unique_ptr<ChatLogic>(new ChatLogic); 
+    // ABOVE: It is not exception-safe as it may cause memory leaks. Imagine when using new that an exception happens in the constructor of the resource. In such a case, the object would not be handled properly, and its destructor would never be called even if the managing object goes out of scope. Therefore, make_unique and make_shared should always be preferred.
+    _chatLogic = std::make_unique<ChatLogic>();
+
 
     // pass pointer to chatbot dialog so answers can be displayed in GUI
     _chatLogic->SetPanelDialogHandle(this);
@@ -136,8 +139,6 @@ ChatBotPanelDialog::~ChatBotPanelDialog()
     //// STUDENT CODE
     ////
     std::cout << "ChatBotPanelDialog Destructor" << std::endl;
-
-    //delete _chatLogic;
 
     ////
     //// EOF STUDENT CODE
